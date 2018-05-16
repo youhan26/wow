@@ -1,16 +1,16 @@
 {
   "name": "inori",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "scr/index.js",
   "repository": "https://github.com/YouHan26/wow.git",
   "author": "YouHan26 <youhan26@gmail.com>",
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0",
+    "redux": "^3.0.0",
     "redux-observable": "^0.18.0"
   },
   "devDependencies": {
