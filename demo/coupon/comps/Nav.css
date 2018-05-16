@@ -1,0 +1,26 @@
+.root {
+  height: 0.88rem;
+  padding-left: 0.24rem;
+  padding-right: 0.24rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  font-size: 0.36rem;
+  color: #666666;
+}
+
+.left {
+  width: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.right {
+  width: 2rem;
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
