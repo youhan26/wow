@@ -9,9 +9,9 @@ const isDev = () => {
 const configureStore = (rootReducer, epicMiddleware) => {
   let store;
   if (isDev()) {
-    store = require('./store').default(rootReducer, epicMiddleware);
+    store = require('./store/store').default(rootReducer, epicMiddleware);
   } else {
-    store = require('./store.prod').default(rootReducer, epicMiddleware);
+    store = require('./store/store.prod').default(rootReducer, epicMiddleware);
   }
   return store;
 };

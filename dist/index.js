@@ -16,11 +16,13 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reduxObservable = require('redux-observable');
 
+require('rxjs');
+
+var _redux = require('redux');
+
 var _configureStore = require('./configureStore');
 
 var _configureStore2 = _interopRequireDefault(_configureStore);
-
-var _index = require('redux/index');
 
 var _createReducer = require('./createReducer');
 
@@ -36,6 +38,8 @@ var _getEpicMiddleware2 = _interopRequireDefault(_getEpicMiddleware);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var _epics = [];
 var _reducersObj = {};
 var _store = void 0;
@@ -45,7 +49,7 @@ function _addPlugins(plugin) {}
 
 function _addEpic(epics) {
   if (epics) {
-    _epics.push(Object.values(epics));
+    _epics = _epics.concat(Object.values(epics));
   }
 }
 
@@ -66,8 +70,8 @@ function _addModel(model) {
 
 function _start(Root, domId) {
   //start to create store
-  var rootEpic = _reduxObservable.combineEpics.apply(null, _epics);
-  var _trueReducers = (0, _index.combineReducers)(_reducersObj);
+  var rootEpic = _reduxObservable.combineEpics.apply(undefined, _toConsumableArray(_epics));
+  var _trueReducers = (0, _redux.combineReducers)(_reducersObj);
 
   //TODO extra epic inject plugin
   var epicMiddleware = (0, _getEpicMiddleware2.default)(rootEpic, {});

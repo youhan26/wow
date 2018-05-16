@@ -2,11 +2,7 @@
  * Created by YouHan on 2017/6/14.
  */
 import {applyMiddleware, createStore} from "redux";
-import {createEpicMiddleware} from "redux-observable";
 import {composeWithDevTools} from "redux-devtools-extension";
-
-import rootReducer from "../reducer";
-import rootEpic from '../epic';
 
 /**
  * https://github.com/zalmoxisus/remote-redux-devtools
@@ -44,9 +40,7 @@ import rootEpic from '../epic';
  *
  */
 
-const epicMiddleware = createEpicMiddleware(rootEpic, {
-  dependencies: {}
-});
+
 
 /* eslint-disable no-underscore-dangle */
 
@@ -55,9 +49,11 @@ const epicMiddleware = createEpicMiddleware(rootEpic, {
 //     applyMiddleware(epicMiddleware)
 //   ));
 
-export default createStore(rootReducer,
-  composeWithDevTools(
-    applyMiddleware(epicMiddleware),
-  )
-);
+export default (rootReducer, epicMiddleware) => {
+  return createStore(rootReducer,
+    composeWithDevTools(
+      applyMiddleware(epicMiddleware),
+    )
+  );
+}
 /* eslint-enable */
