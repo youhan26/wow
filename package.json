@@ -1,13 +1,13 @@
 {
   "name": "inori",
-  "version": "1.0.5",
-  "main": "distribution/index.js",
+  "version": "1.0.6",
+  "main": "dist/index.js",
   "repository": "https://github.com/YouHan26/wow.git",
   "author": "YouHan26 <youhan26@gmail.com>",
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "build": "babel src --presets es2015,react  --out-dir distribution",
+    "build": "babel src --presets es2015,react  --out-dir dist",
     "prepublish": "npm run build"
   },
   "peerDependencies": {
