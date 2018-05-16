@@ -1,7 +1,7 @@
 {
   "name": "inori",
-  "version": "1.0.2",
-  "main": "scr/index.js",
+  "version": "1.0.3",
+  "main": "src/index.js",
   "repository": "https://github.com/YouHan26/wow.git",
   "author": "YouHan26 <youhan26@gmail.com>",
   "license": "MIT",
