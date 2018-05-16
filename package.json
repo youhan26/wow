@@ -1,11 +1,15 @@
 {
   "name": "inori",
-  "version": "1.0.3",
-  "main": "src/index.js",
+  "version": "1.0.4",
+  "main": "distribution/index.js",
   "repository": "https://github.com/YouHan26/wow.git",
   "author": "YouHan26 <youhan26@gmail.com>",
   "license": "MIT",
   "dependencies": {},
+  "scripts": {
+    "build": "babel src --presets es2015,react  --out-dir distribution",
+    "prepublish": "npm run build"
+  },
   "peerDependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -14,6 +18,9 @@
     "redux-observable": "^0.18.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "redux-devtools-extension": "^2.13.2"
   }
 }
