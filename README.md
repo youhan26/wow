@@ -133,5 +133,9 @@ addEpic(epic or epic Array): push origin epic to inori control
 ```
 
 ```
-addPlugin(plugin): inject dependency to redux-observable
+addPlugin(pluginKey, plugin): inject dependency to redux-observable
+```
+
+```
+addMiddleware(middlewares or middleware): redux middleware
 ```
