@@ -16,8 +16,6 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reduxObservable = require('redux-observable');
 
-require('rxjs');
-
 var _redux = require('redux');
 
 var _configureStore = require('./configureStore');
@@ -29,8 +27,6 @@ var _createReducer = require('./createReducer');
 var _createReducer2 = _interopRequireDefault(_createReducer);
 
 var _createAction = require('./createAction');
-
-var _createAction2 = _interopRequireDefault(_createAction);
 
 var _getEpicMiddleware = require('./getEpicMiddleware');
 
@@ -89,11 +85,25 @@ function _start(Root, domId) {
   _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById(domId));
 }
 
+function _addOriginReducer(key, reducer) {
+  _reducersObj[key] = reducer;
+}
+
+function _addOriginEpic(epics) {
+  if (Array.isArray(epics)) {
+    _epics = _epics.concat(epics);
+  } else {
+    _epics.push(epics);
+  }
+}
+
 exports.default = {
   getStore: function getStore() {
     return _store;
   },
   addModel: _addModel,
   start: _start,
-  createAction: _createAction2.default
+  createAction: _createAction.createAction,
+  addReducer: _addOriginReducer,
+  addEpic: _addOriginEpic
 };

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.createAction = createAction;
 function createAction(type) {
   return function (payload, after) {
     return {
@@ -12,5 +13,3 @@ function createAction(type) {
     };
   };
 }
-
-exports.default = createAction;

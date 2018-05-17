@@ -1,4 +1,4 @@
-function createAction(type) {
+export function createAction(type) {
   return (payload, after) => {
     return {
       type,
@@ -7,5 +7,3 @@ function createAction(type) {
     };
   }
 }
-
-export default createAction;
