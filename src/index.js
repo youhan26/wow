@@ -5,7 +5,7 @@ import {combineEpics} from 'redux-observable';
 import {combineReducers} from "redux";
 import configureStore from "./configureStore";
 import createReducer from "./createReducer";
-import {createAction}  from './createAction';
+import {createAction} from './createAction';
 import getEpicMiddleware from "./getEpicMiddleware";
 
 
@@ -13,10 +13,18 @@ let _epics = [];
 let _reducersObj = {};
 let _store;
 let _plugins = {};
+let _middlewares = [];
 
+function _addPlugins(key, plugin) {
+  _plugins[key] = plugin;
+}
 
-function _addPlugins(plugin) {
-
+function _addMiddleware(middlewares) {
+  if (Array.isArray(middlewares)) {
+    _middlewares = _middlewares.concat(middlewares);
+  } else {
+    _middlewares.push(middlewares);
+  }
 }
 
 function _addEpic(epics) {
@@ -44,7 +52,9 @@ function _start(Root, domId) {
   //TODO extra epic inject plugin
   const epicMiddleware = getEpicMiddleware(rootEpic, _plugins);
   
-  _store = configureStore(_trueReducers, epicMiddleware);
+  _middlewares.push(epicMiddleware);
+  
+  _store = configureStore(_trueReducers, _middlewares);
   
   const App = () => {
     return (
@@ -78,6 +88,8 @@ export default {
   start: _start,
   createAction,
   addReducer: _addOriginReducer,
-  addEpic: _addOriginEpic
+  addEpic: _addOriginEpic,
+  addPlugin: _addPlugins,
+  addMiddleware: _addMiddleware,
 }
 

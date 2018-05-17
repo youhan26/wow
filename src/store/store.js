@@ -49,10 +49,10 @@ import {composeWithDevTools} from "redux-devtools-extension";
 //     applyMiddleware(epicMiddleware)
 //   ));
 
-export default (rootReducer, epicMiddleware) => {
+export default (rootReducer, middleWares) => {
   return createStore(rootReducer,
     composeWithDevTools(
-      applyMiddleware(epicMiddleware),
+      applyMiddleware(middleWares),
     )
   );
 }

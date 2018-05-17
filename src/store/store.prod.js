@@ -3,10 +3,10 @@
  */
 import {applyMiddleware, createStore, compose} from "redux";
 
-export default (rootReducer, epicMiddleware) => {
+export default (rootReducer, middleWares) => {
   return createStore(rootReducer,
     compose(
-      applyMiddleware(epicMiddleware),
+      applyMiddleware(...middleWares),
     )
   );
 };
