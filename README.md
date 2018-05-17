@@ -1,4 +1,17 @@
 # wow
+Inspired by Dva.  
+basic package based on reudx, redux-observable.
+
+#### compared to dva：
+##### G：
+* 没有侵入性
+* 预留default reducer处理，支持高阶reducer
+* 对旧项目友好，改造成本极低
+* 能够使用rx 方法，对异步有强处理能力
+
+##### NG:
+* 强依赖rxjs，比较笨重
+
 
 ### Install
 ```
@@ -37,6 +50,7 @@ const model = {
     showLoading(state, action){
       return {...state, loading: true};
     },
+    // handle high order reducer
     default(state, action){
       return state;
     }
@@ -99,13 +113,25 @@ inori.start(Page, 'root');
 ### API
 
 ```
-addModel
+addModel(model) : add model for inori
 ```
 
 ```
-start
+start(Root, 'domId'): start inori
 ```
 
 ```
-createAction
+createAction(actionName): simple action create for connect view
+```
+
+```
+addReducer(reducerKey, reducerHandle): push origin reducer handle to inori control
+```
+
+```
+addEpic(epic or epic Array): push origin epic to inori control
+```
+
+```
+addPlugin(plugin): inject dependency to redux-observable
 ```
