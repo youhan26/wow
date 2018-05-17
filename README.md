@@ -141,6 +141,6 @@ addMiddleware(middlewares or middleware): redux middleware
 ```
 
 ### TODO
-[ ] replece reducer
-[ ] reducer version conflict
-[ ] epic replace
+* [ ] replece reducer
+* [ ] reducer version conflict
+* [ ] epic replace
