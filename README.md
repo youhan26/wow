@@ -20,12 +20,12 @@ npm install inori
 
 ### peer dependency
 ```
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^5.0.7",
-    "redux": "^3.0.0",
-    "redux-observable": "^0.18.0"
-    "rxjs": "^5.0.0",
+    "react",
+    "react-dom",
+    "react-redux",
+    "redux",
+    "redux-observable",
+    "rxjs",
 ```
 
 ### Usage
