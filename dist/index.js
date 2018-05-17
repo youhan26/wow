@@ -39,9 +39,20 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var _epics = [];
 var _reducersObj = {};
 var _store = void 0;
-var _plugins = void 0;
+var _plugins = {};
+var _middlewares = [];
 
-function _addPlugins(plugin) {}
+function _addPlugins(key, plugin) {
+  _plugins[key] = plugin;
+}
+
+function _addMiddleware(middlewares) {
+  if (Array.isArray(middlewares)) {
+    _middlewares = _middlewares.concat(middlewares);
+  } else {
+    _middlewares.push(middlewares);
+  }
+}
 
 function _addEpic(epics) {
   if (epics) {
@@ -70,9 +81,11 @@ function _start(Root, domId) {
   var _trueReducers = (0, _redux.combineReducers)(_reducersObj);
 
   //TODO extra epic inject plugin
-  var epicMiddleware = (0, _getEpicMiddleware2.default)(rootEpic, {});
+  var epicMiddleware = (0, _getEpicMiddleware2.default)(rootEpic, _plugins);
 
-  _store = (0, _configureStore2.default)(_trueReducers, epicMiddleware);
+  _middlewares.push(epicMiddleware);
+
+  _store = (0, _configureStore2.default)(_trueReducers, _middlewares);
 
   var App = function App() {
     return _react2.default.createElement(
@@ -105,5 +118,7 @@ exports.default = {
   start: _start,
   createAction: _createAction.createAction,
   addReducer: _addOriginReducer,
-  addEpic: _addOriginEpic
+  addEpic: _addOriginEpic,
+  addPlugin: _addPlugins,
+  addMiddleware: _addMiddleware
 };

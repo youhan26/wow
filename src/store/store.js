@@ -52,7 +52,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 export default (rootReducer, middleWares) => {
   return createStore(rootReducer,
     composeWithDevTools(
-      applyMiddleware(middleWares),
+      applyMiddleware(...middleWares),
     )
   );
 }
