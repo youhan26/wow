@@ -40,8 +40,12 @@ function _addReducer(namespace, initState, handles) {
 function _addModel(model) {
   const {namespace, state, epics, reducers} = model;
   
-  _addEpic(epics);
-  _addReducer(namespace, state, reducers);
+  if (epics) {
+    _addEpic(epics);
+  }
+  if (reducers) {
+    _addReducer(namespace, state || {}, reducers);
+  }
 }
 
 function _start(Root, domId) {

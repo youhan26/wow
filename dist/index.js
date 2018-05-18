@@ -71,8 +71,12 @@ function _addModel(model) {
       reducers = model.reducers;
 
 
-  _addEpic(epics);
-  _addReducer(namespace, state, reducers);
+  if (epics) {
+    _addEpic(epics);
+  }
+  if (reducers) {
+    _addReducer(namespace, state || {}, reducers);
+  }
 }
 
 function _start(Root, domId) {
