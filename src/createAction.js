@@ -1,9 +1,10 @@
 export function createAction(type) {
-  return (payload, ...others) => {
+  return (payload, after, extra) => {
     return {
       type,
       payload,
-      ...others
+      after,
+      extra
     };
   }
 }

@@ -5,11 +5,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createAction = createAction;
 function createAction(type) {
-  return function (payload, after) {
+  return function (payload, after, extra) {
     return {
       type: type,
       payload: payload,
-      after: after
+      after: after,
+      extra: extra
     };
   };
 }
