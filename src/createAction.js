@@ -1,5 +1,5 @@
 export function createAction(type) {
-  return (payload, after, extra) => {
+  return (payload, extra, after) => {
     return {
       type,
       payload,

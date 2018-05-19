@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createAction = createAction;
 function createAction(type) {
-  return function (payload, after, extra) {
+  return function (payload, extra, after) {
     return {
       type: type,
       payload: payload,
