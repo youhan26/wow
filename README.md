@@ -144,3 +144,4 @@ addMiddleware(middlewares or middleware): redux middleware
 * [ ] replece reducer
 * [ ] reducer version conflict
 * [ ] epic replace
+* [ ] plugin system(doing)
