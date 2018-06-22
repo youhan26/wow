@@ -15,12 +15,12 @@ support react and react-native.
 
 
 ### Install
-```
+```js
 npm install inori
 ```
 
 ### peer dependency
-```
+```js
     "react",
     "react-dom",
     "react-redux",
@@ -38,7 +38,7 @@ npm install inori
 ### Usage
 
 write model:
-```
+```js
 const model = {
   namespace: 'coupon',
   state: {
@@ -69,7 +69,7 @@ export default model;
 ```
 
 write page:
-```
+```js
 import React,{PureComponent} from 'react';
 import {connect} from 'react-redux';
 import inori from 'inori';
@@ -106,7 +106,7 @@ export default connect((state) => {
 ```
 
 write entry file:
-```
+```js
 import inori from 'inori';
 import model from './activity/demo/model';
 import Page from "./activity/demo/Page";
@@ -119,35 +119,33 @@ inori.start(Page, 'root');
 
 ### API
 
-```
+```js
 addModel(model) // add model for inori
 ```
-
-```
+```js
 start(Root, 'domId') //start inori
 ```
-
-```
+```js
 startNative(Root): App // start inori for react-native
 ```
 
-```
+```js
 createAction(actionName)   // simple action create for connect view
 ```
 
-```
+```js
 addReducer(reducerKey, reducerHandle) // push origin reducer handle to inori control
 ```
 
-```
+```js
 addEpic(epic or epic Array)    //push origin epic to inori control
 ```
 
-```
+```js
 addPlugin(pluginKey, plugin)   // inject dependency to redux-observable
 ```
 
-```
+```js
 addMiddleware(middlewares or middleware)   // redux middleware
 ```
 
