@@ -1,6 +1,7 @@
 # wow
 Inspired by Dva.  
 basic package based on reudx, redux-observable.
+support react and react-native.
 
 #### compared to dva：
 ##### G：
@@ -14,24 +15,30 @@ basic package based on reudx, redux-observable.
 
 
 ### Install
-```
+```js
 npm install inori
 ```
 
 ### peer dependency
-```
+```js
     "react",
     "react-dom",
     "react-redux",
     "redux",
     "redux-observable",
     "rxjs",
+
+    // option    
+    "redux-devtools-extension": for web debug
+    "remote-redux-devtools": for react-native debug
+    "remotedev-rn-debugger": for react-native debug
 ```
+
 
 ### Usage
 
 write model:
-```
+```js
 const model = {
   namespace: 'coupon',
   state: {
@@ -62,7 +69,7 @@ export default model;
 ```
 
 write page:
-```
+```js
 import React,{PureComponent} from 'react';
 import {connect} from 'react-redux';
 import inori from 'inori';
@@ -99,7 +106,7 @@ export default connect((state) => {
 ```
 
 write entry file:
-```
+```js
 import inori from 'inori';
 import model from './activity/demo/model';
 import Page from "./activity/demo/Page";
@@ -112,36 +119,40 @@ inori.start(Page, 'root');
 
 ### API
 
+```js
+addModel(model) // add model for inori
 ```
-addModel(model) : add model for inori
+```js
+start(Root, 'domId') //start inori
 ```
-
-```
-start(Root, 'domId'): start inori
-```
-
-```
-createAction(actionName): simple action create for connect view
+```js
+startNative(Root): App // start inori for react-native
 ```
 
-```
-addReducer(reducerKey, reducerHandle): push origin reducer handle to inori control
-```
-
-```
-addEpic(epic or epic Array): push origin epic to inori control
+```js
+createAction(actionName)   // simple action create for connect view
 ```
 
-```
-addPlugin(pluginKey, plugin): inject dependency to redux-observable
+```js
+addReducer(reducerKey, reducerHandle) // push origin reducer handle to inori control
 ```
 
+```js
+addEpic(epic or epic Array)    //push origin epic to inori control
 ```
-addMiddleware(middlewares or middleware): redux middleware
+
+```js
+addPlugin(pluginKey, plugin)   // inject dependency to redux-observable
+```
+
+```js
+addMiddleware(middlewares or middleware)   // redux middleware
 ```
 
 ### TODO
+* [x] support react native
 * [ ] replece reducer
 * [ ] reducer version conflict
 * [ ] epic replace
 * [ ] plugin system(doing)
+* [ ] subsription feature
