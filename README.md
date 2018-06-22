@@ -113,35 +113,41 @@ inori.start(Page, 'root');
 ### API
 
 ```
-addModel(model) : add model for inori
+addModel(model) // add model for inori
 ```
 
 ```
-start(Root, 'domId'): start inori
+start(Root, 'domId') //start inori
 ```
 
 ```
-createAction(actionName): simple action create for connect view
+start(Root): App // start inori for react-native
 ```
 
 ```
-addReducer(reducerKey, reducerHandle): push origin reducer handle to inori control
+createAction(actionName)   // simple action create for connect view
 ```
 
 ```
-addEpic(epic or epic Array): push origin epic to inori control
+addReducer(reducerKey, reducerHandle) // push origin reducer handle to inori control
 ```
 
 ```
-addPlugin(pluginKey, plugin): inject dependency to redux-observable
+addEpic(epic or epic Array)    //push origin epic to inori control
 ```
 
 ```
-addMiddleware(middlewares or middleware): redux middleware
+addPlugin(pluginKey, plugin)   // inject dependency to redux-observable
+```
+
+```
+addMiddleware(middlewares or middleware)   // redux middleware
 ```
 
 ### TODO
+* [x] support react native
 * [ ] replece reducer
 * [ ] reducer version conflict
 * [ ] epic replace
 * [ ] plugin system(doing)
+* [ ] subsription feature
