@@ -1,10 +1,7 @@
 /**
  * Created by YouHan on 2017/7/4.
  */
-
-const isDev = () => {
-  return process.env.REACT_APP_PROJECT_ENV === 'development';
-};
+import {isDev} from "./utils";
 
 const configureStore = (rootReducer, epicMiddleware) => {
   let store;

@@ -1,9 +1,9 @@
 /**
  * Created by YouHan on 2017/6/14.
  */
-import {applyMiddleware, createStore, compose} from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
 
-export default (rootReducer, middleWares) => {
+module.exports = (rootReducer, middleWares) => {
   return createStore(rootReducer,
     compose(
       applyMiddleware(...middleWares),

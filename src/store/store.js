@@ -1,59 +1,35 @@
 /**
  * Created by YouHan on 2017/6/14.
  */
-import {applyMiddleware, createStore} from "redux";
+import {applyMiddleware, createStore, compose} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 
-/**
- * https://github.com/zalmoxisus/remote-redux-devtools
- *
- * support react-native and react web
- *
- * react web: http://remotedev.io/local/
- * react native: debugger.ui......
- */
-/**
- * react native config
- * add below to package.json
- * "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver",
- */
-// const composeEnhancers = composeWithDevTools({
-//   name: Platform.OS,
-//   hostname: 'localhost',
-//   port: 5678
-// });
-/**
- * react web config
- */
-// const composeEnhancers = composeWithDevTools({
-//   realtime: true,
-// });
-//
-// export default createStore(rootReducer,
-//   composeEnhancers(
-//     applyMiddleware()
-//   ));
-
-/**
- * use web extension:
- * https://github.com/zalmoxisus/redux-devtools-extension#usage
- *
- */
+import {Platform} from 'react-native';
+import devTools from 'remote-redux-devtools';
+import {isNative} from "../utils";
 
 
-
-/* eslint-disable no-underscore-dangle */
-
-// export default createStore(rootReducer, /* preloadedState, */
-//   composeWithDevTools(
-//     applyMiddleware(epicMiddleware)
-//   ));
-
-export default (rootReducer, middleWares) => {
-  return createStore(rootReducer,
-    composeWithDevTools(
-      applyMiddleware(...middleWares),
-    )
-  );
+if(isNative()){
+  const devtool = devTools({
+    name: Platform.OS,
+    hostname: 'localhost',
+    port: 5678
+  });
+  
+  module.exports = (rootReducer, middleWares) => {
+    return createStore(rootReducer,
+      compose(
+        applyMiddleware(...middleWares),
+        devtool
+      )
+    );
+  };
+}else {
+  module.exports = (rootReducer, middleWares) => {
+    return createStore(rootReducer,
+      composeWithDevTools(
+        applyMiddleware(...middleWares),
+      )
+    );
+  };
 }
-/* eslint-enable */

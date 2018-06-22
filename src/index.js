@@ -48,7 +48,8 @@ function _addModel(model) {
   }
 }
 
-function _start(Root, domId) {
+
+function _getStore() {
   //start to create store
   const rootEpic = combineEpics(..._epics);
   const _trueReducers = combineReducers(_reducersObj);
@@ -58,7 +59,35 @@ function _start(Root, domId) {
   
   _middlewares.push(epicMiddleware);
   
-  _store = configureStore(_trueReducers, _middlewares);
+  return configureStore(_trueReducers, _middlewares);
+}
+
+/**
+ * start react-native
+ * @param Root
+ * @returns {function(): *}
+ * @private
+ */
+function _startNative(Root) {
+  const _store = _getStore();
+  
+  return () => {
+    return (
+      <Provider store={_store}>
+        <Root />
+      </Provider>
+    );
+  };
+}
+
+/**
+ * start web react
+ * @param Root
+ * @param domId
+ * @private
+ */
+function _start(Root, domId) {
+  const _store = _getStore();
   
   const App = () => {
     return (
@@ -89,11 +118,13 @@ export default {
     return _store;
   },
   addModel: _addModel,
-  start: _start,
   createAction,
   addReducer: _addOriginReducer,
   addEpic: _addOriginEpic,
   addPlugin: _addPlugins,
   addMiddleware: _addMiddleware,
+  
+  start: _start,
+  startNative: _startNative
 }
 
