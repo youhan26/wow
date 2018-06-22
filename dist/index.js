@@ -79,7 +79,7 @@ function _addModel(model) {
   }
 }
 
-function _start(Root, domId) {
+function _getStore() {
   //start to create store
   var rootEpic = _reduxObservable.combineEpics.apply(undefined, _toConsumableArray(_epics));
   var _trueReducers = (0, _redux.combineReducers)(_reducersObj);
@@ -89,7 +89,35 @@ function _start(Root, domId) {
 
   _middlewares.push(epicMiddleware);
 
-  _store = (0, _configureStore2.default)(_trueReducers, _middlewares);
+  return (0, _configureStore2.default)(_trueReducers, _middlewares);
+}
+
+/**
+ * start react-native
+ * @param Root
+ * @returns {function(): *}
+ * @private
+ */
+function _startNative(Root) {
+  var _store = _getStore();
+
+  return function () {
+    return _react2.default.createElement(
+      _reactRedux.Provider,
+      { store: _store },
+      _react2.default.createElement(Root, null)
+    );
+  };
+}
+
+/**
+ * start web react
+ * @param Root
+ * @param domId
+ * @private
+ */
+function _start(Root, domId) {
+  var _store = _getStore();
 
   var App = function App() {
     return _react2.default.createElement(
@@ -119,10 +147,12 @@ exports.default = {
     return _store;
   },
   addModel: _addModel,
-  start: _start,
   createAction: _createAction.createAction,
   addReducer: _addOriginReducer,
   addEpic: _addOriginEpic,
   addPlugin: _addPlugins,
-  addMiddleware: _addMiddleware
+  addMiddleware: _addMiddleware,
+
+  start: _start,
+  startNative: _startNative
 };
