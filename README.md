@@ -1,6 +1,7 @@
 # wow
 Inspired by Dva.  
 basic package based on reudx, redux-observable.
+support react and react-native.
 
 #### compared to dva：
 ##### G：
@@ -26,7 +27,13 @@ npm install inori
     "redux",
     "redux-observable",
     "rxjs",
+
+    // option    
+    "redux-devtools-extension": for web debug
+    "remote-redux-devtools": for react-native debug
+    "remotedev-rn-debugger": for react-native debug
 ```
+
 
 ### Usage
 
@@ -121,7 +128,7 @@ start(Root, 'domId') //start inori
 ```
 
 ```
-start(Root): App // start inori for react-native
+startNative(Root): App // start inori for react-native
 ```
 
 ```
