@@ -1,5 +1,6 @@
 import {Provider} from "react-redux";
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {combineEpics} from 'redux-observable';
 import {combineReducers} from "redux";
 import configureStore from "./configureStore";
@@ -47,8 +48,7 @@ function _addModel(model) {
   }
 }
 
-
-function _getStore() {
+function _start(Root, domId) {
   //start to create store
   const rootEpic = combineEpics(..._epics);
   const _trueReducers = combineReducers(_reducersObj);
@@ -58,35 +58,7 @@ function _getStore() {
   
   _middlewares.push(epicMiddleware);
   
-  return configureStore(_trueReducers, _middlewares);
-}
-
-/**
- * start react-native
- * @param Root
- * @returns {function(): *}
- * @private
- */
-function _startNative(Root) {
-  const _store = _getStore();
-  
-  return () => {
-    return (
-      <Provider store={_store}>
-        <Root />
-      </Provider>
-    );
-  };
-}
-
-/**
- * start web react
- * @param Root
- * @param domId
- * @private
- */
-function _start(Root, domId) {
-  const _store = _getStore();
+  _store = configureStore(_trueReducers, _middlewares);
   
   const App = () => {
     return (
@@ -95,10 +67,8 @@ function _start(Root, domId) {
       </Provider>
     );
   };
-  const ReactDOM = require('react-dom').default;
-  if(ReactDOM){
-    ReactDOM.render(<App />, document.getElementById(domId));
-  }
+  
+  ReactDOM.render(<App />, document.getElementById(domId));
 }
 
 
@@ -119,13 +89,11 @@ export default {
     return _store;
   },
   addModel: _addModel,
+  start: _start,
   createAction,
   addReducer: _addOriginReducer,
   addEpic: _addOriginEpic,
   addPlugin: _addPlugins,
   addMiddleware: _addMiddleware,
-  
-  start: _start,
-  startNative: _startNative
 }
 
