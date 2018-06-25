@@ -1,6 +1,6 @@
 {
   "name": "inori",
-  "version": "1.11.1",
+  "version": "1.11.2",
   "main": "dist/index.js",
   "repository": "https://github.com/YouHan26/wow.git",
   "author": "YouHan26 <youhan26@gmail.com>",
@@ -12,8 +12,6 @@
   },
   "peerDependencies": {
     "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-native": "^0.47.0",
     "react-redux": "^5.0.7",
     "redux": "^3.0.0",
     "redux-observable": "^0.18.0"
