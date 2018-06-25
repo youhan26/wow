@@ -1,9 +1,9 @@
 import {Provider} from "react-redux";
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {combineEpics} from 'redux-observable';
+import UTILS from 'mi-js-utils';
 import {combineReducers} from "redux";
-import configureStore from "./configureStore";
+import storeFactory from "./store/storeFactory";
 import createReducer from "./createReducer";
 import {createAction} from './createAction';
 import getEpicMiddleware from "./getEpicMiddleware";
@@ -11,9 +11,10 @@ import getEpicMiddleware from "./getEpicMiddleware";
 
 let _epics = [];
 let _reducersObj = {};
-let _store;
 let _plugins = {};
 let _middlewares = [];
+
+let _configureStore = UTILS.common.noop;
 
 function _addPlugins(key, plugin) {
   _plugins[key] = plugin;
@@ -39,7 +40,7 @@ function _addReducer(namespace, initState, handles) {
 
 function _addModel(model) {
   const {namespace, state, epics, reducers} = model;
-  
+
   if (epics) {
     _addEpic(epics);
   }
@@ -48,29 +49,31 @@ function _addModel(model) {
   }
 }
 
-function _start(Root, domId) {
+/**
+ * create configure store method
+ * @param arguments
+ * @private
+ */
+function _createConfigureStore(...args){
+  _configureStore = storeFactory.apply(undefined, args);
+}
+
+/**
+ * create store
+ * @private
+ */
+function _createStore() {
   //start to create store
   const rootEpic = combineEpics(..._epics);
   const _trueReducers = combineReducers(_reducersObj);
-  
+
   //TODO extra epic inject plugin
   const epicMiddleware = getEpicMiddleware(rootEpic, _plugins);
-  
-  _middlewares.push(epicMiddleware);
-  
-  _store = configureStore(_trueReducers, _middlewares);
-  
-  const App = () => {
-    return (
-      <Provider store={_store}>
-        <Root />
-      </Provider>
-    );
-  };
-  
-  ReactDOM.render(<App />, document.getElementById(domId));
-}
 
+  _middlewares.push(epicMiddleware);
+
+  return _configureStore(_trueReducers, _middlewares);
+}
 
 function _addOriginReducer(key, reducer) {
   _reducersObj[key] = reducer;
@@ -85,15 +88,14 @@ function _addOriginEpic(epics) {
 }
 
 export default {
-  getStore: function () {
-    return _store;
-  },
   addModel: _addModel,
-  start: _start,
   createAction,
   addReducer: _addOriginReducer,
   addEpic: _addOriginEpic,
   addPlugin: _addPlugins,
   addMiddleware: _addMiddleware,
+
+  createConfigureStore: _createConfigureStore,
+  createStore: _createStore,
 }
 

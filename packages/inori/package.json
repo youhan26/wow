@@ -5,7 +5,9 @@
   "repository": "https://github.com/YouHan26/wow.git",
   "author": "YouHan26 <youhan26@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "inori-core": "^0.1.0"
+  },
   "scripts": {
     "build": "babel src --presets es2015,react  --out-dir dist",
     "prepublish": "npm run build"
@@ -21,6 +23,6 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "redux-devtools-extension": "^2.13.2"
+    "redux-devtools-extension": "^2.13.5"
   }
 }

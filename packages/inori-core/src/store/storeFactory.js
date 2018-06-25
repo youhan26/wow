@@ -1,22 +1,13 @@
 /**
  * Created by YouHan on 2017/7/4.
  */
-import {isDev} from "../utils";
+import createStore from './store'
 
-const storeFactory = (compose, ...) => {
-  return (rootReducer, epicMleware) => {
-    let store;
-    if (isDev()) {
-      store = require('./store').default(rootReducer, epicMiddleware);
-    } else {
-      store = require('./store.prod').default(rootReducer, epicMiddleware);
-    }
-    return store;
+const storeFactory = (compose, ...enhances) => {
+  return (rootReducer, epicMiddleware) => {
+    return createStore(compose, enhances)(rootReducer, epicMiddleware);
   }
 };
-
-
-
 
 export default storeFactory;
 
