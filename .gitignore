@@ -179,3 +179,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+.idea/wow.iml
+.idea/deployment.xml
+.idea/jsLibraryMappings.xml
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
