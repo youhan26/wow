@@ -10,10 +10,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _reduxObservable = require('redux-observable');
 
 var _redux = require('redux');
@@ -126,8 +122,10 @@ function _start(Root, domId) {
       _react2.default.createElement(Root, null)
     );
   };
-
-  _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById(domId));
+  var ReactDOM = require('react-dom').default;
+  if (ReactDOM) {
+    ReactDOM.render(_react2.default.createElement(App, null), document.getElementById(domId));
+  }
 }
 
 function _addOriginReducer(key, reducer) {

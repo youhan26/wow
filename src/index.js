@@ -1,6 +1,5 @@
 import {Provider} from "react-redux";
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {combineEpics} from 'redux-observable';
 import {combineReducers} from "redux";
 import configureStore from "./configureStore";
@@ -96,8 +95,10 @@ function _start(Root, domId) {
       </Provider>
     );
   };
-  
-  ReactDOM.render(<App />, document.getElementById(domId));
+  const ReactDOM = require('react-dom').default;
+  if(ReactDOM){
+    ReactDOM.render(<App />, document.getElementById(domId));
+  }
 }
 
 
