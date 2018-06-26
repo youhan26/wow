@@ -1,5 +1,6 @@
 import React from 'react';
 import core from 'inori-core';
+import {Provider} from 'react-redux';
 import getStoreConfigure from "./getStoreConfigure";
 
 let _store;
@@ -12,7 +13,7 @@ function _start(Root) {
   const {compose, enhance} = getStoreConfigure();
   core.createConfigureStore(compose, enhance);
 
-  _store = core.createStore();
+    _store = core.createStore();
 
 
   return () => {
