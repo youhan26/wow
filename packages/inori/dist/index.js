@@ -12,6 +12,8 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactRedux = require('react-redux');
+
 var _inoriCore = require('inori-core');
 
 var _inoriCore2 = _interopRequireDefault(_inoriCore);
@@ -39,7 +41,7 @@ function _start(Root, domId) {
 
   var App = function App() {
     return _react2.default.createElement(
-      Provider,
+      _reactRedux.Provider,
       { store: _store },
       _react2.default.createElement(Root, null)
     );

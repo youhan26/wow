@@ -51,11 +51,10 @@ function _addModel(model) {
 
 /**
  * create configure store method
- * @param arguments
  * @private
  */
 function _createConfigureStore(...args){
-  _configureStore = storeFactory.apply(undefined, args);
+  _configureStore = storeFactory(...args);
 }
 
 /**

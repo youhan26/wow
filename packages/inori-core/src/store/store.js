@@ -11,6 +11,6 @@ export default (compose, enhances) => {
         applyMiddleware(...middleWares),
         ...enhances
       )
-    )
+    );
   };
 }

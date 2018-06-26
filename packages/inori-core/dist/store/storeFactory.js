@@ -16,7 +16,9 @@ var storeFactory = function storeFactory(compose) {
   }
 
   return function (rootReducer, epicMiddleware) {
-    return (0, _store2.default)(compose, enhances)(rootReducer, epicMiddleware);
+    return (0, _store2.default)(compose, enhances.filter(function (enhance) {
+      return !!enhance;
+    }))(rootReducer, epicMiddleware);
   };
 }; /**
     * Created by YouHan on 2017/7/4.
