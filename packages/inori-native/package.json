@@ -1,12 +1,12 @@
 {
   "name": "inori-native",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "main": "dist/index.js",
   "repository": "https://github.com/YouHan26/wow.git",
   "author": "YouHan26 <youhan26@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "inori-core": "^0.1.8"
+    "inori-core": "^0.1.9"
   },
   "scripts": {
     "build": "babel src --presets es2015,react  --out-dir dist",
