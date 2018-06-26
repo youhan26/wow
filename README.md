@@ -16,7 +16,8 @@ support react and react-native.
 
 ### Install
 ```js
-npm install inori
+npm install inori   // for react web
+npm install inori-native // for react native
 ```
 
 ### peer dependency
